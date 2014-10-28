@@ -1,0 +1,83 @@
+<html>
+	<body>
+	
+		<input type="button" value="get" id="button1"><br>
+		<input type="button" value="set" id="button2"><br>
+		<input type="button" value="delete" id="button3"><br>
+		
+		-----------------------<br><br>
+		<input type="button" value="starttimer" id="button4">
+		<input type="button" value="stoptimer" id="button5">
+		<input type="text" value="" id="text1"><br>
+		-----------------------<br><br>
+		<input type="button" value="go to googlting" id="button6" onclick = "openpopup()">
+		
+		
+		<script language="javascript">
+			
+			function getcookie(e){
+				var cookie1 = document.cookie;
+				cookie1 = cookie1.split(';');
+				var usernameisfound = false;
+				for (i in cookie1){
+					if(cookie1[i].indexOf('username=') != -1){alert(cookie1[i]);usernameisfound=true;}
+					//alert(cookie1[i] +' - '+i);
+				}
+				if (!usernameisfound){alert('username is undefined now.');}
+			}
+			
+			var setcookie = function (e) {
+				//document.getElementById('button1').
+				var s = prompt('enter your name');
+				document.cookie = 'username='+s;
+			}
+			
+			var deletecookie = function (e) {
+				var cookie1 = document.cookie;
+				cookie1 = cookie1.split(';');
+				for (i in cookie1){
+				
+					var splittedcookie = cookie1[i].split('=');
+					var a = splittedcookie[0] + '='+'; max-age=0';
+					//alert(a);
+					document.cookie = a;
+					//alert(cookie1[i] +' - '+i);
+				}
+			}
+			
+			function runtimer(){
+				//document.getElementById('text1').value = 'text1';
+				var i = 0;
+				var tick = function (){
+					
+					return function(){
+						document.getElementById('text1').value = i;
+					
+						//alert(i);
+						i++;
+					}
+				}
+				timer = setInterval(tick(), 1000);
+				return function (){clearInterval(timer);}
+			}
+			
+			
+			
+			function openpopup(){
+				var popup = window.open('http://google.com', 'wtf', "location=yes,resizable=yes,scrollbars=yes,status=yes,height=600,width=600");
+				setTimeout(function(){popup.close()}, 5000);
+			}
+
+			var cls = runtimer();
+			
+			document.getElementById('button1').addEventListener('click', getcookie, false);
+			document.getElementById('button2').addEventListener('click', setcookie, false);
+			document.getElementById('button3').addEventListener('click', deletecookie, false);
+//			document.getElementById('button4').addEventListener('click', runtimer, false);
+			document.getElementById('stoptimer').addEventListener('click', cls, false);
+			
+			
+			
+		</script>
+	</body>
+</html>
