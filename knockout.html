@@ -2,10 +2,21 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>knockout library test</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <a href="index.html">go back</a>
 
-    <script src=""></script>
+    <p>First name: <input data-bind="value:firstName"/></p>
+    <p>Last name: <input data-bind="value:lastName"/></p>
+
+    <p>First name changed: <strong data-bind="text:firstName"></strong></p>
+    <p>Last name changed: <strong data-bind="text:lastName"></strong></p>
+
+    <script src="js/vendor/knockout-3.2.0.js"></script>
+    <script src="js/vendor/jquery.tmpl.min.js"></script>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/knockout-tst.js"></script>
 </body>
 </html>
