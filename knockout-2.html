@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>knockout library test</title>
+    <!--link rel="stylesheet" href="css/main.css"-->
+</head>
+<body>
+    <a href="index.html">go back</a>
+
+    <h2>Your seat reservations</h2>
+    <h3>Add new passenger:</h3>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Meal</td>
+        </tr>
+        <tr>
+            <td><input data-bind=""/></td>
+            <td>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </td>
+            <td>
+                <button data-bind="click: VM.addPassenger('qweqty',2)">add</button>
+            </td>
+        </tr>
+    </table>
+    <button onclick="$('.notEditable').hide();$('.editable').show()">Edit table</button>
+    <button onclick="$('.notEditable').show();$('.editable').hide()">Save</button>
+
+
+    <table>
+        <thead><tr>
+            <th>Passenger name</th><th>Meal</th><th>Payment</th><th></th>
+        </tr></thead>
+        <!-- Todo: Generate table body -->
+        <tbody data-bind="foreach: VM.seats">
+        <tr>
+            <td data-bind="text: name" class="notEditable"></td>
+            <td class="editable"><input data-bind="value: name" /></td>
+            <td  class="notEditable" data-bind="text: meal().mealName"></td>
+            <td><select class="editable" data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+            <td data-bind="text: meal().price"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script src="js/vendor/knockout-3.2.0.js"></script>
+    <script src="js/vendor/jquery.tmpl.min.js"></script>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/knockout-tst-2.js"></script>
+</body>
+</html>
