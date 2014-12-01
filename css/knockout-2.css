@@ -1,0 +1,25 @@
+table, td{
+
+    border: 0px solid #000000;
+    padding: 5px;
+}
+
+tr {
+
+    border: 1px solid #000000;
+    padding: 5px;
+}
+
+/*
+td.editable- {
+    display: inline;
+}
+
+td.notEditable {
+    display: none;
+}
+*/
+
+.hidden1{
+    display: none;
+}
