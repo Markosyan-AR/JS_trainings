@@ -11,7 +11,7 @@
     <a href="index.html">go back</a>
 
     <h2>Your seat reservations</h2>
-    <h2>Total seats reserved:<span data-bind="text: VM.seats().length"/></h2>
+    <h2>Total seats reserved: <span data-bind="text: VM.seats().length"></span></h2>
     <h3>Add new passenger:</h3>
     <table>
         <tr>
@@ -21,15 +21,15 @@
         <tr>
             <td><input id="userName"/></td>
             <td>
-                <!--select id="userMeal" data-bind="options: availableMeals, value: 'id', optionsText: 'mealName'"/-->
-                <select id="userMeal">
+                <select id="userMeal" data-bind="options: VM.availableMeals(), value: 'mealName', optionsText: 'mealName'"></select>
+                <!--select id="userMeal">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
-                </select>
+                </select-->
             </td>
             <td>
-                <button data-bind="click: VM.addPassenger">add</button>
+                <button data-bind="click: VM.addPassenger, enable: VM.seats().length < 10">add</button>
             </td>
         </tr>
     </table>

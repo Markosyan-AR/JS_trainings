@@ -24,9 +24,9 @@ function ReservationsViewModel() {
 
     // Non-editable catalog data - would come from the server
     self.availableMeals = ko.observableArray([
-        { mealName: "Standard (sandwich)", price: 0 },
-        { mealName: "Premium (lobster)", price: 34.95},
-        { mealName: "Ultimate (whole zebra)", price: 290}
+        { mealName: "Standard (sandwich)", price: 0, id:0 },
+        { mealName: "Premium (lobster)", price: 34.95, id:1},
+        { mealName: "Ultimate (whole zebra)", price: 290, id:2}
     ]);
 
     // Editable data
@@ -45,7 +45,8 @@ function ReservationsViewModel() {
 
     self.addPassenger = function(){
         name = $('#userName').val();
-        mealIndex = $('#userMeal').val()-1;
+        //mealIndex = $('#userMeal').val()-1;
+        mealIndex = document.getElementById("userMeal").selectedIndex
         console.log('addPassenger function running! name = ' + name);
         self.seats.push(new SeatReservation(name, self.availableMeals()[mealIndex]))
     }
