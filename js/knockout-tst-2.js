@@ -44,9 +44,11 @@ function ReservationsViewModel() {
     }
 
     self.addPassenger = function(){
+        var mealIndex;
+        var name;
         name = $('#userName').val();
         //mealIndex = $('#userMeal').val()-1;
-        mealIndex = document.getElementById("userMeal").selectedIndex
+        mealIndex = document.getElementById("userMeal").selectedIndex;
         console.log('addPassenger function running! name = ' + name);
         self.seats.push(new SeatReservation(name, self.availableMeals()[mealIndex]))
     }

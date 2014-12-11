@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>knockout library test 3</title>
+    <!--link rel="stylesheet" href="css/main.css"-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/knockout-3.css">
+</head>
+<body>
+<a href="index.html">go back</a>
+<ul class="folders" data-bind="foreach: folders">
+    <li data-bind="text: $data,
+                   css:{selected: $data == $root.selectedFolder()},
+                   click: $root.goToFolder"></li>
+
+</ul>
+
+<table class="mails" data-bind="with: selectedFolderData">
+    <thead><tr><th>From</th><th>To</th><th>Subject</th><th>Date</th></tr></thead>
+    <tbody data-bind="foreach: mails">
+    <tr>
+        <td data-bind="text: from"></td>
+        <td data-bind="text: to"></td>
+        <td data-bind="text: subject"></td>
+        <td data-bind="text: date"></td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="js/vendor/knockout-3.2.0.debug.js"></script>
+<script src="js/vendor/jquery-2.1.1.js"></script>
+<script src="js/knockout-3.js"></script>
+</body>
+</html>

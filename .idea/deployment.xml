@@ -7,6 +7,9 @@
           <mappings>
             <mapping deploy="http" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/http/awstats" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
@@ -14,4 +17,3 @@
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
-

@@ -1,0 +1,4 @@
+{
+id: "Outbox",
+mails: [ ]
+}
