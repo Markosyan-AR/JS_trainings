@@ -16,10 +16,11 @@
 
 </ul>
 
+<!-- Email folders -->
 <table class="mails" data-bind="with: selectedFolderData">
     <thead><tr><th>From</th><th>To</th><th>Subject</th><th>Date</th></tr></thead>
     <tbody data-bind="foreach: mails">
-    <tr>
+    <tr data-bind="click: $root.goToMail">
         <td data-bind="text: from"></td>
         <td data-bind="text: to"></td>
         <td data-bind="text: subject"></td>
@@ -28,8 +29,20 @@
     </tbody>
 </table>
 
+<!-- Chosen mail -->
+<div class="viewMail" data-bind="with: selectedMailData">
+    <div class="mailInfo">
+        <h1 data-bind="text: subject"></h1>
+        <p><label>From</label>: <span data-bind="text: from"></span></p>
+        <p><label>To</label>: <span data-bind="text: to"></span></p>
+        <p><label>Date</label>: <span data-bind="text: date"></span></p>
+    </div>
+    <p class="message" data-bind="html: messageContent" />
+</div>
+
 <script src="js/vendor/knockout-3.2.0.debug.js"></script>
 <script src="js/vendor/jquery-2.1.1.js"></script>
 <script src="js/knockout-3.js"></script>
+<script src="js/vendor/sammy.js"></script>
 </body>
 </html>

@@ -3,66 +3,36 @@
  */
 function WebMailVM(){
     var self = this;
-    self.folders = ['Inbox', 'Outbox', 'Spam', 'Deleted'];
+    self.folders = ['Inbox', 'Archive', 'Sent', 'Spam'];
     self.selectedFolder = ko.observable();
     self.selectedFolderData = ko.observable();
+    self.selectedMailData = ko.observable();
 
     self.goToFolder = function(folder) {
         self.selectedFolder(folder);
-        console.log(folder);
-        /*self.selectedFolder = folder;
-        self.selectedFolder.valueHasMutated();*/
-        //$.get('/mail', { folder: folder }, self.selectedFolderData);
-        //$.getJSON('./data', {folder: folder + '.txt'}, self.selectedFolderData);
+        //console.log(folder);
+        self.selectedMailData(null);
         folderName = 'data/'+folder+'.txt';
-        $.getJSON(folderName,
-            function(data){
-                alert('get json - done works');
-                self.selectedFolderData(data);
-                console.log(data.mails[0]);
-
-            })
-            .success(function() {
-                alert( "success" );
-            })
-            .fail(function(data) {
-                alert( "error" );
-                console.log(data);
-            })
-            .always(function() {
-                alert( "complete" );
-            });
-
-        /*$.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: folderName,
-            success: function(data){
-                console.log(data);
-                alert(1);
-            }
-        });*/
-    }
-
-
-    /*self.getMailData = function (folder){
-        $.getJSON()
-    }*/
-    self.getMailData = function(folder){
-        folderName = 'data/'+folder+'.txt';
-        var mailDataObj;
         $.getJSON(folderName)
-            //.success(function(data){console.log(data);mailDataObj = data});
-        //return mailDataObj;
-            .done(function(data){
-                self.selectedFolderData(data);
-                console.log(data.mails[0]);
-
+            .always(function(data) {
+                self.selectedFolderData(eval( "("+data.responseText+")"));
+                //console.log(self.selectedFolderData());
             });
-
-        //mailDataObj = JSON.parse();
-        //console.log(mailDataObj);
     }
+
+    self.goToMail = function(mail) {
+        console.log(mail);
+        self.selectedFolder(mail.folder);
+        var data = self.selectedFolderData;
+        console.log(data);
+
+        self.selectedFolderData(null); // Stop showing a folder
+        self.selectedMailData(mail);
+        /*$.getJSON(folderName)
+            .always(function(data) {
+                self.selectedFolderData(eval( "("+data.responseText+")"));
+            });*/
+    };
 
     self.goToFolder('Inbox');
 
